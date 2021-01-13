@@ -36,5 +36,5 @@ RUN pip install \
 RUN apt-get clean
 
 # configure git info
-RUN git config user.name "Chenglin Ye"
-RUN git config user.email "yechnlin@gmail.com"
+RUN git config --global user.name "Chenglin Ye"
+RUN git config --global user.email "yechnlin@gmail.com"
