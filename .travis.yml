@@ -8,6 +8,6 @@ before_install:
   - npm install
 
 script:
-  - cat .pwd | base64 --decode | docker login -u yechenglin --password-stdin
+  - echo "ZG9ja2VyMTIzNDUK" | base64 --decode | docker login -u yechenglin --password-stdin
   - docker build -t yechenglin/mydev.latest .
   - docker push yechenglin/mydev.latest
