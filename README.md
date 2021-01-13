@@ -1,8 +1,6 @@
 A Dockerfile for personal development.
 
-| Status |
-|:------:|
-| [![Build Status](https://travis-ci.org/yechenglin-dev/Dockerfile.svg?branch=master)](https://travis-ci.org/yechenglin-dev/Dockerfile) |
+[![Build Status](https://travis-ci.org/yechenglin-dev/Dockerfile.svg?branch=master)](https://travis-ci.org/yechenglin-dev/Dockerfile)
 
 ### Features
 
