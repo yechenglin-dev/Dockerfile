@@ -1,12 +1,22 @@
 FROM ubuntu:focal
-
 MAINTAINER Chenglin.Ye <yechnlin@gmail.com>
 
 # configure timezone
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo 'Asia/Shanghai' >/etc/timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+	echo 'Asia/Shanghai' >/etc/timezone
 
-RUN apt-get update && apt-get install -y \
+# install sudo
+RUN apt-get update && apt-get install sudo
+
+# create a user
+RUN useradd -ms /bin/bash ye && \
+    usermod -aG sudo ye && \
+    echo "ye ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+USER ye
+WORKDIR /home/ye
+
+# install dev packages
+RUN sudo apt-get update && apt-get install -y \
 	lsb-release \
 	tree \
 	curl \
@@ -16,25 +26,21 @@ RUN apt-get update && apt-get install -y \
 	make \
 	gcc \
 	g++ \
+	ctags \
+	ack \
 	software-properties-common
 
 # install python and golang
-RUN add-apt-repository ppa:deadsnakes/ppa
-RUN add-apt-repository ppa:longsleep/golang-backports
-RUN apt-get update && apt-get install -y \
-	python3.8 \
-	python3-pip \
-	golang-go
+RUN sudo add-apt-repository ppa:deadsnakes/ppa && \
+	sudo add-apt-repository ppa:longsleep/golang-backports && \
+	sudo apt-get update && \
+	sudo apt-get install -y \
+		python3.8 \
+		python3-pip \
+		golang-go
 
-# install tensorflow
-RUN pip3 install --upgrade pip
-RUN pip install \
-	tensorflow \
-	jupyterlab \
-	matplotlib
+# install pip
+RUN sudo pip3 install --upgrade pip
 
+# clean cache
 RUN apt-get clean
-
-# configure git info
-RUN git config --global user.name "Chenglin Ye"
-RUN git config --global user.email "yechnlin@gmail.com"
