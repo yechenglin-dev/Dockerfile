@@ -16,7 +16,7 @@ USER ye
 WORKDIR /home/ye
 
 # install dev packages
-RUN sudo apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
 	lsb-release \
 	tree \
 	curl \
@@ -43,4 +43,4 @@ RUN sudo add-apt-repository ppa:deadsnakes/ppa && \
 RUN sudo pip3 install --upgrade pip
 
 # clean cache
-RUN apt-get clean
+RUN sudo apt-get clean
