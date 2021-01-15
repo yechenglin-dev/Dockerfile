@@ -9,4 +9,3 @@ Following are configured by default,
 - git
 - python3.8
 - golang
-- tensorflow
