@@ -25,6 +25,8 @@ RUN sudo apt-get update && sudo apt-get install -y \
 	vim \
 	make \
 	cmake \
+	dpkg-dev \
+	dh-cmake \
 	gcc \
 	g++ \
 	ctags \
